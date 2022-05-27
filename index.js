@@ -121,9 +121,12 @@ class Container{
                         let allData=await fs.promises.readFile(this.file, 'utf-8')
                         let dataJson=JSON.parse(allData)
 
-                        if (dataJson[id-1]) {
+                        const dataLenght=Object.values(dataJson[id-1]).length
+                        // Hago esto para contrastar que el objeto esté vacio, para poder llevar un buen control de los id -- 
 
-                            dataJson.splice(id-1,1)
+                        if (dataLenght!=0) {
+
+                            dataJson.splice(id-1,1,{}) // Dejo el objeto vacio
                             await fs.promises.writeFile(this.file,JSON.stringify(dataJson, null, 2),'utf-8')
                             return console.log("Record deleted successfully!")
                             
@@ -168,15 +171,15 @@ const data= new Container()
 // Methods
 
 data.save({
-    title:"Shoes",
-    price:250,
+    title:"Shoes 3",
+    price:300,
     thumbnail:"https://cdn-icons-png.flaticon.com/512/860/860895.png"
 })
 
 data.getAll()
 
-data.getById() //Parameter
+data.getById(1) //Parameter
 
-data.getDeleteById() //Parameter
+data.getDeleteById(2) //Parameter
 
 data.deleteAll()
