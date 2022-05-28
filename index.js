@@ -74,11 +74,13 @@ class Container{
     
                         let allData=await fs.promises.readFile(this.file, 'utf-8')
                         let dataJson=JSON.parse(allData)
+
+                        const dataLenght=Object.values(dataJson[id-1]).length
     
-                        if (dataJson[id-1]) {
+                        if (dataLenght!=0) {
                             return console.log(dataJson[id-1])
                         }else{
-                            throw Error("The register don't exist");
+                            throw Error("The register don't exist")
                         }
                     }else{
                         throw Error("The paramether must be integer")
@@ -170,16 +172,16 @@ const data= new Container()
 
 // Methods
 
-data.save({
-    title:"Shoes 3",
-    price:300,
-    thumbnail:"https://cdn-icons-png.flaticon.com/512/860/860895.png"
-})
+// data.save({
+//     title:"Shoes",
+//     price:300,
+//     thumbnail:"https://cdn-icons-png.flaticon.com/512/860/860895.png"
+// })
 
-data.getAll()
+// data.getAll()
 
-data.getById(1) //Parameter
+// data.getById(1) //Parameter
 
-data.getDeleteById(2) //Parameter
+// data.getDeleteById(2) //Parameter
 
-data.deleteAll()
+// data.deleteAll()
